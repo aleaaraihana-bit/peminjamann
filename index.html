@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LabBorrow - Sistem Peminjaman Laboratorium</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f7fc;color:#17233c;line-height:1.5}
+a{text-decoration:none;color:inherit}
+header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #e5eaf2;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;color:#244b9b}
+.logo{width:42px;height:42px;border-radius:12px;background:#2f66e8;color:#fff;display:grid;place-items:center;font-weight:800}
+nav{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+nav a{padding:9px 12px;border-radius:9px;color:#5f6e87;font-size:13px;font-weight:700}
+nav a:hover{background:#edf3ff;color:#2f66e8}
+.hero{padding:65px 5% 45px;background:linear-gradient(135deg,#edf4ff,#fff);display:grid;grid-template-columns:1.5fr 1fr;gap:35px;align-items:center}
+.hero h1{font-size:42px;line-height:1.15;margin:12px 0}
+.hero p{color:#6c7a91;max-width:650px}
+.hero-card{background:#fff;border-radius:20px;padding:25px;box-shadow:0 15px 40px #244b9b12;border:1px solid #e8edf5}
+.badge{display:inline-block;background:#e9f1ff;color:#2f66e8;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:800}
+section{padding:45px 5%;scroll-margin-top:80px}
+.section-title{margin-bottom:22px}
+.section-title h2{font-size:26px}
+.section-title p{color:#7a899f}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 7px 25px #18345b0d;border:1px solid #edf0f5}
+.stat{display:flex;align-items:center;gap:14px}
+.icon{font-size:25px;background:#f0f4ff;border-radius:12px;padding:11px}
+.stat b{display:block;font-size:25px}
+.stat small{color:#7d8ba0}
+.panel{background:#fff;border-radius:16px;padding:22px;margin-top:20px;box-shadow:0 7px 25px #18345b0d;border:1px solid #edf0f5}
+.panel h3{margin-bottom:15px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:13px 10px;border-bottom:1px solid #edf0f5}
+th{font-size:11px;text-transform:uppercase;color:#718098}
+td{color:#41516a}
+.status{display:inline-block;border-radius:20px;padding:5px 9px;font-size:11px;font-weight:800}
+.good{background:#e8f8ef;color:#218450}
+.wait{background:#fff3d8;color:#ad7500}
+.bad{background:#ffe9e9;color:#c84242}
+.flow{display:flex;align-items:stretch;gap:10px}
+.flow-item{flex:1;text-align:center;background:#f7f9fd;border:1px solid #e7ecf4;border-radius:14px;padding:18px}
+.flow-item b,.flow-item small{display:block}
+.flow-item b{margin-top:7px}
+.flow-item small{color:#7c8ba1;margin-top:4px}
+.arrow{display:flex;align-items:center;font-size:24px;color:#8ca0bf}
+.form-box{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+input,select{width:100%;padding:12px;border:1px solid #d9e1ed;border-radius:9px;background:#fff}
+.btn{display:inline-block;background:#2f66e8;color:#fff;border:0;border-radius:9px;padding:11px 17px;font-weight:800;cursor:pointer}
+.info{background:#edf5ff;color:#486587;border:1px solid #d8e8ff;border-radius:11px;padding:13px;font-size:13px;margin-top:15px}
+footer{text-align:center;background:#fff;border-top:1px solid #e8edf5;padding:25px;color:#7a899f;font-size:13px}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}.flow{flex-direction:column}.arrow{justify-content:center;transform:rotate(90deg)}.form-box{grid-template-columns:1fr}}
+@media(max-width:600px){header{align-items:flex-start;flex-direction:column}nav{justify-content:flex-start}.hero h1{font-size:32px}.cards{grid-template-columns:1fr}section{padding:35px 4%}.hero{padding:45px 4%}.panel{overflow-x:auto}}
+@media print{header{display:none}.hero{padding:20px}section{padding:20px}.card,.panel{box-shadow:none}}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">LB</div>
+    <div>LabBorrow<br><small style="color:#8491a5;font-weight:500">Peminjaman Laboratorium</small></div>
+  </div>
+  <nav>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#siswa">Siswa</a>
+    <a href="#barang">Barang</a>
+    <a href="#peminjaman">Peminjaman</a>
+    <a href="#pengembalian">Pengembalian</a>
+    <a href="#laporan">Laporan</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero" id="dashboard">
+  <div>
+    <span class="badge">SISTEM INFORMASI</span>
+    <h1>Sistem Peminjaman<br>Laboratorium</h1>
+    <p>Website sederhana untuk mengelola data siswa, barang, peminjaman, pengembalian, dan laporan laboratorium.</p>
+    <br>
+    <a class="btn" href="#peminjaman">Lihat Peminjaman</a>
+  </div>
+  <div class="hero-card">
+    <h3>👋 Selamat Datang</h3>
+    <p style="color:#718098;margin-top:8px">Pengguna aktif: <b>Admin</b></p>
+    <hr style="border:0;border-top:1px solid #edf0f5;margin:18px 0">
+    <p style="font-size:13px;color:#718098">Website ini dibuat menggunakan <b>HTML dan CSS saja</b>, sehingga tidak memerlukan JavaScript maupun database.</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-title"><h2>Ringkasan Data</h2><p>Data contoh sistem peminjaman laboratorium.</p></div>
+  <div class="cards">
+    <div class="card stat"><span class="icon">👨‍🎓</span><div><b>25</b><small>Total Siswa</small></div></div>
+    <div class="card stat"><span class="icon">📦</span><div><b>48</b><small>Total Barang</small></div></div>
+    <div class="card stat"><span class="icon">📝</span><div><b>12</b><small>Peminjaman</small></div></div>
+    <div class="card stat"><span class="icon">↩️</span><div><b>8</b><small>Pengembalian</small></div></div>
+  </div>
+
+  <div class="panel">
+    <h3>Alur Sistem</h3>
+    <div class="flow">
+      <div class="flow-item">👨‍🎓<b>Siswa</b><small>Mengajukan peminjaman</small></div>
+      <div class="arrow">→</div>
+      <div class="flow-item">🧑‍💼<b>Petugas</b><small>Memproses peminjaman</small></div>
+      <div class="arrow">→</div>
+      <div class="flow-item">📦<b>Barang</b><small>Digunakan siswa</small></div>
+      <div class="arrow">→</div>
+      <div class="flow-item">↩️<b>Pengembalian</b><small>Barang dikembalikan</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="siswa">
+  <div class="section-title"><h2>👨‍🎓 Data Siswa</h2><p>Daftar siswa pengguna laboratorium.</p></div>
+  <div class="panel">
+    <table>
+      <thead><tr><th>No</th><th>NIS</th><th>Nama</th><th>Kelas</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>1001</td><td>Andi Pratama</td><td>XI RPL 1</td><td><span class="status good">Aktif</span></td></tr>
+        <tr><td>2</td><td>1002</td><td>Sinta Ayu</td><td>XI RPL 2</td><td><span class="status good">Aktif</span></td></tr>
+        <tr><td>3</td><td>1003</td><td>Raka Putra</td><td>XI RPL 1</td><td><span class="status good">Aktif</span></td></tr>
+        <tr><td>4</td><td>1004</td><td>Dinda Lestari</td><td>XI RPL 2</td><td><span class="status good">Aktif</span></td></tr>
+        <tr><td>5</td><td>1005</td><td>Fajar Ramadhan</td><td>XI RPL 1</td><td><span class="status good">Aktif</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="barang">
+  <div class="section-title"><h2>📦 Data Barang</h2><p>Daftar inventaris laboratorium.</p></div>
+  <div class="panel">
+    <table>
+      <thead><tr><th>No</th><th>Kode</th><th>Nama Barang</th><th>Jumlah</th><th>Kondisi</th><th>Lokasi</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>BRG001</td><td>Laptop Lenovo</td><td>10</td><td><span class="status good">Baik</span></td><td>Lab RPL</td></tr>
+        <tr><td>2</td><td>BRG002</td><td>Proyektor Epson</td><td>5</td><td><span class="status good">Baik</span></td><td>Lab RPL</td></tr>
+        <tr><td>3</td><td>BRG003</td><td>Kamera</td><td>3</td><td><span class="status wait">Perlu Cek</span></td><td>Lab Multimedia</td></tr>
+        <tr><td>4</td><td>BRG004</td><td>Keyboard</td><td>20</td><td><span class="status good">Baik</span></td><td>Lab RPL</td></tr>
+        <tr><td>5</td><td>BRG005</td><td>Mouse</td><td>20</td><td><span class="status good">Baik</span></td><td>Lab RPL</td></tr>
+        <tr><td>6</td><td>BRG006</td><td>Tripod</td><td>4</td><td><span class="status bad">Rusak</span></td><td>Lab Multimedia</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="peminjaman">
+  <div class="section-title"><h2>📝 Peminjaman</h2><p>Form dan data peminjaman barang.</p></div>
+  <div class="panel">
+    <h3>Form Peminjaman</h3>
+    <div class="form-box">
+      <select><option>Pilih Siswa</option><option>Andi Pratama</option><option>Sinta Ayu</option><option>Raka Putra</option></select>
+      <select><option>Pilih Barang</option><option>Laptop Lenovo</option><option>Proyektor Epson</option><option>Kamera</option></select>
+      <input type="number" min="1" placeholder="Jumlah">
+      <input type="date">
+      <input type="text" placeholder="Keperluan">
+      <button class="btn" type="button">Simpan Peminjaman</button>
+    </div>
+    <div class="info">Form ini merupakan tampilan/demo. Karena website tidak menggunakan JavaScript atau database, data tidak disimpan otomatis.</div>
+  </div>
+
+  <div class="panel">
+    <h3>Data Peminjaman</h3>
+    <table>
+      <thead><tr><th>No</th><th>Siswa</th><th>Barang</th><th>Jumlah</th><th>Tanggal</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Andi Pratama</td><td>Laptop Lenovo</td><td>1</td><td>29-09-2026</td><td><span class="status wait">Dipinjam</span></td></tr>
+        <tr><td>2</td><td>Sinta Ayu</td><td>Proyektor Epson</td><td>1</td><td>28-09-2026</td><td><span class="status good">Kembali</span></td></tr>
+        <tr><td>3</td><td>Raka Putra</td><td>Kamera</td><td>1</td><td>27-09-2026</td><td><span class="status wait">Dipinjam</span></td></tr>
+        <tr><td>4</td><td>Dinda Lestari</td><td>Keyboard</td><td>2</td><td>26-09-2026</td><td><span class="status good">Kembali</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="pengembalian">
+  <div class="section-title"><h2>↩️ Pengembalian</h2><p>Data barang yang sudah dan belum dikembalikan.</p></div>
+  <div class="panel">
+    <table>
+      <thead><tr><th>No</th><th>Siswa</th><th>Barang</th><th>Tanggal Pinjam</th><th>Tanggal Kembali</th><th>Denda</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Andi Pratama</td><td>Laptop Lenovo</td><td>29-09-2026</td><td>-</td><td>Rp0</td><td><span class="status wait">Belum Kembali</span></td></tr>
+        <tr><td>2</td><td>Sinta Ayu</td><td>Proyektor Epson</td><td>28-09-2026</td><td>29-09-2026</td><td>Rp0</td><td><span class="status good">Sudah Kembali</span></td></tr>
+        <tr><td>3</td><td>Raka Putra</td><td>Kamera</td><td>27-09-2026</td><td>-</td><td>Rp5.000</td><td><span class="status wait">Belum Kembali</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="laporan">
+  <div class="section-title"><h2>📊 Laporan</h2><p>Rekap kegiatan peminjaman laboratorium.</p></div>
+  <div class="cards">
+    <div class="card"><b>Total Peminjaman</b><h2 style="margin-top:8px">12</h2></div>
+    <div class="card"><b>Sudah Kembali</b><h2 style="margin-top:8px">8</h2></div>
+    <div class="card"><b>Belum Kembali</b><h2 style="margin-top:8px">4</h2></div>
+    <div class="card"><b>Total Denda</b><h2 style="margin-top:8px">Rp15.000</h2></div>
+  </div>
+  <div class="panel">
+    <table>
+      <thead><tr><th>No</th><th>Siswa</th><th>Barang</th><th>Jumlah</th><th>Tanggal</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Andi Pratama</td><td>Laptop Lenovo</td><td>1</td><td>29-09-2026</td><td>Dipinjam</td></tr>
+        <tr><td>2</td><td>Sinta Ayu</td><td>Proyektor Epson</td><td>1</td><td>28-09-2026</td><td>Kembali</td></tr>
+        <tr><td>3</td><td>Raka Putra</td><td>Kamera</td><td>1</td><td>27-09-2026</td><td>Dipinjam</td></tr>
+        <tr><td>4</td><td>Dinda Lestari</td><td>Keyboard</td><td>2</td><td>26-09-2026</td><td>Kembali</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="info">Untuk mencetak laporan, gunakan <b>Ctrl + P</b> pada keyboard atau menu Print dari browser.</div>
+</section>
+
+</main>
+
+<footer>
+  LabBorrow — Sistem Peminjaman Laboratorium &copy; 2026
+</footer>
+
+</body>
+</html>
